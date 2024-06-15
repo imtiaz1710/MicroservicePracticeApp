@@ -5,11 +5,11 @@ using Platform.Core.Interfaces;
 namespace Platform.Application.Platform.Commands;
 
 public class CreatePlatformCommandHandler(IPlatformRepository PlatformRepository) :
-    IRequestHandler<CreatePlatformCommand, CommonAPIResponse>
+    IRequestHandler<CreatePlatformCommand, CommonAPIResponse<PlatformDTO>>
 {
     private readonly IPlatformRepository _PlatformRepository = PlatformRepository;
 
-    public async Task<CommonAPIResponse> Handle(CreatePlatformCommand request, CancellationToken cancellationToken)
+    public async Task<CommonAPIResponse<PlatformDTO>> Handle(CreatePlatformCommand request, CancellationToken cancellationToken)
     {
         var platformEntity = new Core.Entity.Platform
         {
@@ -18,8 +18,9 @@ public class CreatePlatformCommandHandler(IPlatformRepository PlatformRepository
             Publisher = request.Publisher
         };
 
-        var response = await _PlatformRepository.AddAsync(platformEntity);
+        var platform = await _PlatformRepository.AddAsync(platformEntity);
 
-        return new CommonAPIResponse(data: response, message: ApplicationConstants.DataCreatedSuccessfull);
+        var PlatformDTO = new PlatformDTO { Cost = platform.Cost, Name = platform.Name, Id = platform.Id, Publisher = platform.Publisher };
+        return new CommonAPIResponse<PlatformDTO>(data: PlatformDTO, message: ApplicationConstants.DataCreatedSuccessfull);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Platform.Application.Platform.Commands;
 
-public class CreatePlatformCommand : IRequest<CommonAPIResponse>
+public class CreatePlatformCommand : IRequest<CommonAPIResponse<PlatformDTO>>
 {
     public required string Name { get; set; }
     public required string Publisher { get; set; }

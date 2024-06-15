@@ -1,4 +1,5 @@
 
+using Platform.API.SyncDataServices.Http;
 using Platform.Application;
 using Platform.Core.Interfaces;
 using Platform.Infrustructure.Data;
@@ -25,6 +26,9 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddTransient<IBaseRepository<Platform.Core.Entity.Platform>, BaseRepository<Platform.Core.Entity.Platform>>();
 
 builder.Services.AddTransient<IPlatformRepository, PlatformRepository>();
+//builder.Services.AddTransient<ICommandDataClient, CommandDataHttpClient>();
+
+builder.Services.AddHttpClient<ICommandDataClient, CommandDataHttpClient>();
 
 var configuration = builder.Configuration;
 

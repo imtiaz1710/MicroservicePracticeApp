@@ -12,6 +12,8 @@ public class GetAllPlatformQueryHandler(IPlatformRepository platformRepository) 
     {
         var data = await _platformRepository.GetAllAsync();
 
-        return new CommonAPIResponse(ApplicationConstants.DataRetriveSuccessfull, data);
+        var res = data.Select(d => new PlatformDTO { Cost = d.Cost, Name = d.Name , Id = d.Id, Publisher = d.Publisher });
+
+        return new CommonAPIResponse(ApplicationConstants.DataRetriveSuccessfull, res);
     }
 }
