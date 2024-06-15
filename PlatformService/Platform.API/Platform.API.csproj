@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\platform.Application\Platform.Application.csproj" />
-    <ProjectReference Include="..\platform.Core\Platform.Core.csproj" />
-    <ProjectReference Include="..\platform.Infrustructure\Platform.Infrustructure.csproj" />
+    <ProjectReference Include="..\Platform.Application\Platform.Application.csproj" />
+    <ProjectReference Include="..\Platform.Core\Platform.Core.csproj" />
+    <ProjectReference Include="..\Platform.Infrustructure\Platform.Infrustructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
