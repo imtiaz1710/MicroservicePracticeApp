@@ -1,2 +1,5 @@
 .vs
 .vs/
+slnx.sqlite
+bin/
+obj/
