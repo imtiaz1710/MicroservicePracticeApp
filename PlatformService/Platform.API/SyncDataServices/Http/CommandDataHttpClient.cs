@@ -7,17 +7,19 @@ namespace Platform.API.SyncDataServices.Http
     public class CommandDataHttpClient: ICommandDataClient
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _config;
 
-        public CommandDataHttpClient(HttpClient httpClient)
+        public CommandDataHttpClient(HttpClient httpClient, IConfiguration config)
         {
             _httpClient = httpClient;
+            _config = config;
         }
 
         public async Task SendPlatformToCommand(PlatformDTO platform)
         {
             var httpContent = new StringContent(JsonSerializer.Serialize(platform), Encoding.UTF8, "application/json");
 
-            var res = await _httpClient.PostAsync("https://localhost:44389/api/c/Platform", httpContent);
+            var res = await _httpClient.PostAsync(_config["CommandService"], httpContent);
 
             if (res.IsSuccessStatusCode)
             {

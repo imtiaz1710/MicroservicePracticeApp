@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata: 
-  name: projectcrudtemplate-srv
+  name: platformservice-srv
 spec:
   type: NodePort
   selector:
-    app: projectcrudtemplate
+    app: platformservice
   ports:
-    - name: projectcrudtemplate
+    - name: platformservice
       protocol: TCP
       port: 8080
       targetPort: 8080
